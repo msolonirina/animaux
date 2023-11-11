@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block monTitre %}
+Voici le détails du  {{ infoAnimal.nom }}
+{% endblock %}
+{% block body %}
+<img src="{{asset('images/' ~infoAnimal.image)}}">
+{{ infoAnimal.nom}} est un {{ infoAnimal.description }} , il pèse {{ infoAnimal.poids }} 
+Et c'est un animal {% if infoAnimal.dangeureux %} dangeureux {% else %} non dangeureux {% endif %}
+
+{% endblock %}
