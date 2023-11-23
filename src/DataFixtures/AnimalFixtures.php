@@ -4,7 +4,9 @@ namespace App\DataFixtures;
 
 use App\Entity\Animal;
 use App\Entity\Continent;
+use App\Entity\Dispose;
 use App\Entity\Famille;
+use App\Entity\Personne;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -12,6 +14,18 @@ class AnimalFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
+        $p1 = new Personne();
+        $p1->setNom("Milo");
+        $manager->persist($p1);
+
+        $p2 = new Personne();
+        $p2->setNom("Tya");
+        $manager->persist($p2);
+
+        $p3 = new Personne();
+        $p3->setNom("Lili");
+        $manager->persist($p3);
+
         $continent1 = new Continent();
         $continent1->setLibelle("Europe");
         $manager->persist($continent1);
@@ -107,6 +121,43 @@ class AnimalFixtures extends Fixture
             ->addContinent($continent2);
         $manager->persist($a5);
 
+        $dispose1 = new Dispose();
+        $dispose1->setAnimal($a1)
+        ->setPersonne($p1)
+        ->setNb(30);
+        $manager->persist($dispose1);
+
+
+        $dispose2 = new Dispose();
+        $dispose2->setAnimal($a2)
+        ->setPersonne($p1)
+        ->setNb(115);
+        $manager->persist($dispose2);
+
+
+        $dispose3 = new Dispose();
+        $dispose3->setAnimal($a3)
+        ->setPersonne($p1)
+        ->setNb(85);
+        $manager->persist($dispose3);
+
+        $dispose4 = new Dispose();
+        $dispose4->setAnimal($a1)
+        ->setPersonne($p2)
+        ->setNb(15);
+        $manager->persist($dispose4);
+
+        $dispose5 = new Dispose();
+        $dispose5->setAnimal($a2)
+        ->setPersonne($p2)
+        ->setNb(5);
+        $manager->persist($dispose5);
+
+        $dispose6 = new Dispose();
+        $dispose6->setAnimal($a3)
+        ->setPersonne($p3)
+        ->setNb(25);
+        $manager->persist($dispose6);
 
         $manager->flush();
     }
